@@ -1,7 +1,6 @@
 import React, { Component ,useState,useEffect }  from 'react';
 import axios from 'axios';
-import {Grid} from '@material-ui/core';
-
+import UserCard from './userCard';
 
 const UserList = () => {
   const [listOfUSer, setlistOfUSer] = useState([]);
@@ -16,22 +15,17 @@ const UserList = () => {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
   return (
     <>
-
-
-<div className="container" style={{flexWrap:"wrap "}}>
-
-
+<div className="container"  style={{flexWrap:"wrap " ,display:"flex"}}>
         {listOfUSer.map((user) => (
-            <div className="col-md-6 ">
-{user.username}
+            <div className="col-md-3 mx-30 ">
+              <UserCard key={user.id} user={user}/>
             </div>
         ))}
-
-
       </div>
+
     </>
   );
 };
